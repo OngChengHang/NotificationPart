@@ -25,13 +25,13 @@ import java.util.Map;
 public class NotificationUpload extends AppCompatActivity {
 
     // creating variables for our edit text
-    private EditText UserIDEdt, competitionResultEdt, competitionDescriptionEdt;
+    private EditText IDEdt, UserIDEdt, competitionResultEdt, competitionDescriptionEdt;
 
     // creating variable for button
     private Button BtnSubmit;
 
     // creating a strings for storing our values from edittext fields.
-    private String UserID, competitionResult, competitionDescription;
+    private String id, UserID, competitionResult, competitionDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class NotificationUpload extends AppCompatActivity {
         setContentView(R.layout.activity_notificationupload);
 
         // initializing our edittext and buttons
+        IDEdt = findViewById(R.id.IDEdt);
         UserIDEdt = findViewById(R.id.UserIDEdt);
         competitionResultEdt = findViewById(R.id.competitionResultEdt);
         competitionDescriptionEdt= findViewById(R.id.competitionDescriptionEdt);
@@ -48,12 +49,15 @@ public class NotificationUpload extends AppCompatActivity {
             public void onClick(View v) {
 
                 // getting data from edittext fields.
+                id = IDEdt.getText().toString();
                 UserID = UserIDEdt.getText().toString();
                 competitionResult = competitionResultEdt.getText().toString();
                 competitionDescription = competitionDescriptionEdt.getText().toString();
 
                 // validating the text fields if empty or not.
-                if (TextUtils.isEmpty(UserID)) {
+                if (TextUtils.isEmpty(id)) {
+                    IDEdt.setError("Please enter ID");
+                } else if (TextUtils.isEmpty(UserID)) {
                     UserIDEdt.setError("Please enter User ID");
                 } else if (TextUtils.isEmpty(competitionResult)) {
                     competitionResultEdt.setError("Please enter Result");
@@ -61,13 +65,13 @@ public class NotificationUpload extends AppCompatActivity {
                     competitionDescriptionEdt.setError("Please enter Description");
                 } else {
                     // calling method to add data to Firebase Firestore.
-                    addDataToDatabase(UserID, competitionResult, competitionDescription);
+                    addDataToDatabase(id,UserID, competitionResult, competitionDescription);
                 }
             }
         });
     }
 
-    private void addDataToDatabase(String UserID, String competitionResult, String competitionDescription) {
+    private void addDataToDatabase(String id,String UserID, String competitionResult, String competitionDescription) {
 
         // url to post our data
         String url = "http://192.168.1.114/Notification/NotificationUpload.php";
@@ -90,6 +94,7 @@ public class NotificationUpload extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 // and setting data to edit text as empty
+                IDEdt.setText("");
                 UserIDEdt.setText("");
                 competitionResultEdt.setText("");
                 competitionDescriptionEdt.setText("");
@@ -117,6 +122,7 @@ public class NotificationUpload extends AppCompatActivity {
 
                 // on below line we are passing our
                 // key and value pair to our parameters.
+                params.put("id", id);
                 params.put("UserID", UserID);
                 params.put("competitionResult", competitionResult);
                 params.put("competitionDescription", competitionDescription);
