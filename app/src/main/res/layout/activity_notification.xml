@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/blue_300"
+    android:id="@+id/interface1"
+    tools:context=".notification">
+
+    <TextView
+        android:id="@+id/title_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Competition Notification"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="@color/white"
+        android:shadowRadius="5"
+        android:shadowDx="1"
+        android:shadowDy="1"/>
+
+    <Button
+        android:id="@+id/btnupload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register Result"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#aef4df" />
+
+    <Button
+        android:id="@+id/btnread"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check Result"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#aef4c2" />
+
+</LinearLayout>
