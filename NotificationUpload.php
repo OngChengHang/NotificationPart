@@ -19,9 +19,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 $response = array();
 // on below line we are checking if the body provided by user contains
 // this keys as course name,course description and course duration
-if(isset($_POST['UserID']) && isset($_POST['competitionResult']) && isset($_POST['competitionDescription'])){
+if(isset($_POST['id']) &&isset($_POST['UserID']) && isset($_POST['competitionResult']) && isset($_POST['competitionDescription'])){
 	// if above three parameters are present then we are extravting values
 	// from it and storing it in new variables.
+	$id = $_POST['id'];
 	$UserID = $_POST['UserID'];
 	$competitionResult = $_POST['competitionResult'];
 	$competitionDescription = $_POST['competitionDescription'];
@@ -30,8 +31,8 @@ if(isset($_POST['UserID']) && isset($_POST['competitionResult']) && isset($_POST
 	// on below line make sure to add your table name
 	// in previous article we have created our table name
 	// as courseDb and add all column headers to it except our id.
-	$stmt = $conn->prepare("INSERT INTO `result`(`UserID`, `competitionResult`, `competitionDescription`) VALUES (?,?,?)");
-	$stmt->bind_param('sss', $UserID, $competitionResult, $competitionDescription);
+	$stmt = $conn->prepare("INSERT INTO `result`(`id`,`UserID`, `competitionResult`, `competitionDescription`) VALUES (?,?,?,?)");
+	$stmt->bind_param('ssss', $id, $UserID, $competitionResult, $competitionDescription);
 // on below line we are checking if our sql query is executed successfully.
 if($stmt->execute() == TRUE){
 		// if the script is executed successfully we are
